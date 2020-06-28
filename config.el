@@ -69,6 +69,7 @@
   :desc "slurp-foward" "[ l" #'sp-forward-slurp-sexp
   :desc "barf-foward" "[ h" #'sp-forward-barf-sexp
   :desc "slurp-backward" "] l" #'sp-backward-slurp-sexp
-  :desc "barf-backward" "] h" #'sp-backward-barf-sexp))
+  :desc "barf-backward" "] h" #'sp-backward-barf-sexp
+  :desc "splice-sexp" "[ s" #'sp-splice-sexp))
 
 ;; :n "splice-sexp" "M-s" #'sp-splice-sexp
