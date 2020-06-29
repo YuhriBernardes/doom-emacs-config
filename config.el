@@ -72,4 +72,5 @@
   :desc "barf-backward" "] h" #'sp-backward-barf-sexp
   :desc "splice-sexp" "[ s" #'sp-splice-sexp))
 
-;; :n "splice-sexp" "M-s" #'sp-splice-sexp
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+(map! "TAB" #'company-indent-or-complete-common)
