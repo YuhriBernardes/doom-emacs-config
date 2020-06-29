@@ -74,3 +74,7 @@
 
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 (map! "TAB" #'company-indent-or-complete-common)
+
+(map! :leader
+      :desc "Maximize window" "w m m" #'maximize-window
+      :desc "Minimize window" "w m n" #'minimize-window)
