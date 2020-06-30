@@ -79,4 +79,6 @@
 
 (map! :leader
       :desc "Maximize window" "w m m" #'maximize-window
-      :desc "Minimize window" "w m n" #'minimize-window)
+      :desc "Minimize window" "w m n" #'minimize-window
+      :desc "ace-window" "w a" #'ace-window
+      :desc "ace-delete-wintow" "w d" #'ace-delete-window)
