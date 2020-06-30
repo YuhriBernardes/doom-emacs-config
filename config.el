@@ -70,7 +70,9 @@
   :desc "barf-foward" "[ h" #'sp-forward-barf-sexp
   :desc "slurp-backward" "] l" #'sp-backward-slurp-sexp
   :desc "barf-backward" "] h" #'sp-backward-barf-sexp
-  :desc "splice-sexp" "[ s" #'sp-splice-sexp))
+  :desc "splice-sexp" "[ s" #'sp-splice-sexp
+  :desc "pprint-result" "m e p" #'cider-pprint-eval-last-sexp
+  :desc "eval-ns-form" "m e n" #'cider-eval-ns-form))
 
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 (map! "TAB" #'company-indent-or-complete-common)
