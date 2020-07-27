@@ -87,3 +87,9 @@
       :desc "ace-window" "w a" #'ace-window
       :desc "ace-delete-wintow" "w D" #'ace-delete-window
       :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
+
+(map!
+ :map with-editor-mode-map
+ :leader
+ :desc "With editor finish" "m k" #'with-editor-cancel
+ :desc "With editor finish" "m f" #'with-editor-finish)
