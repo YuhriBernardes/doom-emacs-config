@@ -59,6 +59,9 @@
 ;; Smartparens force strict mode
 (setq smartparens-global-strict-mode 1)
 
+(require 'treemacs)
+(treemacs-git-mode 'extended)
+
 (map!
  :after clojure-mode
  :map (clojure-mode-map cider-mode-map cider-repl-mode-map)
