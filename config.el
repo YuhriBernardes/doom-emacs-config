@@ -56,6 +56,20 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;;;;;;;;;;;;;;
+;; PlantUML ;;
+;;;;;;;;;;;;;;
+
+(use-package! plantuml-mode
+  :config
+  (setq plantuml-jar-path "/lib/plantuml/plantuml.jar")
+  (setq org-plantuml-jar-path "/lib/plantuml/plantuml.jar")
+  (setq plantuml-default-exec-mode 'jar)
+  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+;;;###autoload
+  (with-eval-after-load "org"
+      (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))))
+
 ;; Smartparens force strict mode
 (setq smartparens-global-strict-mode 1)
 
