@@ -70,11 +70,42 @@
   (with-eval-after-load "org"
       (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))))
 
+
+
+;;;;;;;;;;;
+;; Kubel ;;
+;;;;;;;;;;;
+
+(use-package! kubel
+  :config
+(map!
+ :after kubel-mode
+ :map kubel-mode-map
+ :leader
+ (:desc "resource-details" "m RET" #'kubel-get-resource-details
+  :desc "set-context" "m c" #'kubel-set-context
+  :desc "set-namespace" "m n" #'kubel-set-namespace
+  :desc "kubel-mode" "m g" #'kubel-mode
+  :desc "port-foward-pod" "m p" #'kubel-port-forward-pod
+  :desc "log-popup" "m l" #'kubel-log-popup
+  :desc "copy-popup" "m C" #'kubel-copy-popup
+  :desc "kubel-help" "?" #'kubel-evil-help-popup
+  :desc "quicl-edit" "m E" #'kubel-quick-edit
+  :desc "exec-pod" "m e" #'kubel-exec-pod
+  :desc "set-output-format" "m f" #'kubel-set-output-format
+  :desc "delete-popup" "m d" #'kubel-delete-popup
+  :desc "set-resource" "m R" #'kubel-set-resource
+  :desc "jab-deployment" "m a" #'kubel-jab-deployment)))
+
+;;;;;;;;;;;
+;; Other ;;
+;;;;;;;;;;;
+
 ;; Smartparens force strict mode
 (setq smartparens-global-strict-mode 1)
 
-(require 'treemacs)
-(treemacs-git-mode 'extended)
+(use-package! treemacs
+    :config (treemacs-git-mode 'extended))
 
 (map!
  :after clojure-mode
