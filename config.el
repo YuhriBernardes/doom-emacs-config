@@ -118,6 +118,7 @@
   :desc "barf-backward" "] h" #'sp-backward-barf-sexp
   :desc "splice-sexp" "[ s" #'sp-splice-sexp
   :desc "pprint-result" "m e p" #'cider-pprint-eval-last-sexp
+  :desc "eval-deful-at-point" "m e c" #'cider-eval-defun-at-point
   :desc "eval-ns-form" "m e n" #'cider-eval-ns-form)
  :desc "add-doublequote" "\"" #'paredit-doublequote)
 
