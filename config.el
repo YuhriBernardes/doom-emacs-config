@@ -76,24 +76,24 @@
 
 (use-package! kubel
   :config
-(map!
- :after kubel-mode
- :map kubel-mode-map
- :leader
- (:desc "resource-details" "m RET" #'kubel-get-resource-details
-  :desc "set-context" "m c" #'kubel-set-context
-  :desc "set-namespace" "m n" #'kubel-set-namespace
-  :desc "kubel-mode" "m g" #'kubel-mode
-  :desc "port-foward-pod" "m p" #'kubel-port-forward-pod
-  :desc "log-popup" "m l" #'kubel-log-popup
-  :desc "copy-popup" "m C" #'kubel-copy-popup
-  :desc "kubel-help" "?" #'kubel-evil-help-popup
-  :desc "quicl-edit" "m E" #'kubel-quick-edit
-  :desc "exec-pod" "m e" #'kubel-exec-pod
-  :desc "set-output-format" "m f" #'kubel-set-output-format
-  :desc "delete-popup" "m d" #'kubel-delete-popup
-  :desc "set-resource" "m R" #'kubel-set-resource
-  :desc "jab-deployment" "m a" #'kubel-jab-deployment)))
+  (map!
+   :mode kubel-mode
+   :leader
+   :localleader
+   (:desc "resource-details" "RET" #'kubel-get-resource-details
+    :desc "set-context" "c" #'kubel-set-context
+    :desc "set-namespace" "n" #'kubel-set-namespace
+    :desc "kubel-mode" "g" #'kubel-mode
+    :desc "port-foward-pod" "p" #'kubel-port-forward-pod
+    :desc "log-popup" "l" #'kubel-log-popup
+    :desc "copy-popup" "C" #'kubel-copy-popup
+    :desc "kubel-help" "?" #'kubel-evil-help-popup
+    :desc "quicl-edit" "E" #'kubel-quick-edit
+    :desc "exec-pod" "e" #'kubel-exec-pod
+    :desc "set-output-format" "f" #'kubel-set-output-format
+    :desc "delete-popup" "d" #'kubel-delete-popup
+    :desc "set-resource" "R" #'kubel-set-resource
+    :desc "jab-deployment" "a" #'kubel-jab-deployment)))
 
 ;;;;;;;;;;;
 ;; Other ;;
@@ -133,7 +133,8 @@
       :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
 
 (map!
- :map with-editor-mode-map
+ :mode git-commit-mode
+ :map git-commit-mode-map
  :leader
- :desc "With editor finish" "m k" #'with-editor-cancel
- :desc "With editor finish" "m f" #'with-editor-finish)
+ :desc "With editor finish" "z k" #'with-editor-cancel
+ :desc "With editor finish" "z f" #'with-editor-finish)
