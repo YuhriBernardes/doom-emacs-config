@@ -76,6 +76,8 @@
 
 (use-package! kubel
   :config
+  (map! :leader (:desc "Kubel" "o k" #'kubel))
+  (map! :mode kubel-mode :n "q" #'with-editor-finish)
   (map!
    :mode kubel-mode
    :leader
@@ -92,7 +94,7 @@
     :desc "exec-pod" "e" #'kubel-exec-pod
     :desc "set-output-format" "f" #'kubel-set-output-format
     :desc "delete-popup" "d" #'kubel-delete-popup
-    :desc "set-resource" "R" #'kubel-set-resource
+    :desc "set-resource" "r" #'kubel-set-resource
     :desc "jab-deployment" "a" #'kubel-jab-deployment)))
 
 ;;;;;;;;;;;
