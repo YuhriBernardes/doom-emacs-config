@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: require as
+# key: ra
+# --
+[${1:package} :as ${2:alias}]

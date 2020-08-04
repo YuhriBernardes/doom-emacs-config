@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Tools deps new dependency
+# key: tdm
+# --
+${1:package} {:mvn/version "${2:version}"}
