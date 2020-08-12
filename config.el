@@ -115,14 +115,8 @@
     :desc "jab-deployment" "a" #'kubel-jab-deployment)))
 
 ;;;;;;;;;;;
-;; Other ;;
+;; Cider ;;
 ;;;;;;;;;;;
-
-;; Smartparens force strict mode
-(setq smartparens-global-strict-mode 1)
-
-(use-package! treemacs
-    :config (treemacs-git-mode 'extended))
 
 (map!
  :after clojure-mode
@@ -140,6 +134,17 @@
   :desc "eval-deful-at-point" "m e c" #'cider-eval-defun-at-point
   :desc "eval-ns-form" "m e n" #'cider-eval-ns-form)
  :desc "add-doublequote" "\"" #'paredit-doublequote)
+
+
+;;;;;;;;;;;
+;; Other ;;
+;;;;;;;;;;;
+
+;; Smartparens force strict mode
+(setq smartparens-global-strict-mode t)
+
+(use-package! treemacs
+    :config (treemacs-git-mode 'extended))
 
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 (map! "TAB" #'company-indent-or-complete-common)
