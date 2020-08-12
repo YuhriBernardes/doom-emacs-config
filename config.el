@@ -22,13 +22,24 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font (font-spec :family "Iosevka" :size 14 :weight 'normal))
-(setq doom-big-font (font-spec :family "Iosevka" :size 19 :weight 'normal))
+(setq doom-font (font-spec :family "Source Code Pro" :size 14 :weight 'normal))
+(setq doom-big-font (font-spec :family "Source Code Pro" :size 19 :weight 'normal))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-moonlight)
+;;
+(defun random-dark-theme ()
+  (setq doom-theme (seq-random-elt '(doom-moonlight doom-wilmersdorf doom-laserwave doom-challenger-deep doom-city-lights)))
+  (doom/reload-theme))
+
+(defun random-light-theme ()
+  (setq doom-theme (seq-random-elt '(doom-one-light doom-acario-light doom-nord-light doom-solarized-light doom-tomorrow-day)))
+  (doom/reload-theme))
+
+(random-dark-theme)
+;; (random-light-theme)
+
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
