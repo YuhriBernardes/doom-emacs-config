@@ -23,19 +23,22 @@
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 (setq doom-font (font-spec :family "Source Code Pro" :size 14 :weight 'normal))
-(setq doom-big-font (font-spec :family "Source Code Pro" :size 19 :weight 'normal))
+(setq doom-big-font (font-spec :family "Source Code Pro" :size 25 :weight 'normal))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;;
-(defun random-dark-theme ()
-  (setq doom-theme (seq-random-elt '(doom-moonlight doom-wilmersdorf doom-laserwave doom-challenger-deep doom-city-lights)))
+
+(defun random-theme (theme-list)
+  (setq doom-theme (seq-random-elt theme-list))
   (doom/reload-theme))
 
+(defun random-dark-theme ()
+  (random-theme '(doom-moonlight doom-wilmersdorf doom-laserwave doom-challenger-deep doom-city-lights)))
+
 (defun random-light-theme ()
-  (setq doom-theme (seq-random-elt '(doom-one-light doom-acario-light doom-nord-light doom-solarized-light doom-tomorrow-day)))
-  (doom/reload-theme))
+  (random-theme '(doom-one-light doom-acario-light doom-nord-light doom-solarized-light doom-tomorrow-day)))
 
 (random-dark-theme)
 ;; (random-light-theme)
@@ -48,7 +51,6 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
-
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -73,19 +75,12 @@
 
 (require 'docker-compose-mode)
 
-;;;;;;;;;;;;;;
-;; PlantUML ;;
-;;;;;;;;;;;;;;
+;;;;;;;;;
+;; RGB ;;
+;;;;;;;;;
 
-(use-package! plantuml-mode
-  :config
-  (setq plantuml-jar-path "/lib/plantuml/plantuml.jar")
-  (setq org-plantuml-jar-path "/lib/plantuml/plantuml.jar")
-  (setq plantuml-default-exec-mode 'jar)
-  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-;;;###autoload
-  (with-eval-after-load "org"
-      (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))))
+(add-hook! 'rainbow-mode-hook
+  (hl-line-mode (if rainbow-mode -1 +1)))
 
 ;;;;;;;;;;;
 ;; Kubel ;;
@@ -118,9 +113,59 @@
 ;; Cider ;;
 ;;;;;;;;;;;
 
+(defun cider-eval-last-sexp-to-clipboard (&optional pretty-print)
+ (interactive "P")
+ (cider-interactive-eval nil
+                         (nrepl-make-response-handler nil
+                                                      (lambda (_buffer value)
+                                                        (kill-new value)
+                                                        (message "copied %s" value))
+                                                      (lambda (_buffer out)
+                                                        (kill-new out)
+                                                        (message "copied %s" out))
+                                                      (lambda (_ err)
+                                                        (message "error evaluating: %s" err))
+                                                      '())
+                         (cider-last-sexp 'bounds)
+                         (if pretty-print
+                              (cider--nrepl-print-request-map fill-column)
+                            (cider--nrepl-pr-request-map))))
+
 (map!
- :after clojure-mode
- :map (clojure-mode-map cider-mode-map cider-repl-mode-map)
+ :i "TAB" #'company-complete
+ (:localleader
+  (:map (clojure-mode-map clojurescript-mode-map)
+   (:prefix ("l" . "load")
+    "a" #'cider-load-all-files
+    "f" #'cider-load-file)
+   (:prefix ("e" . "eval")
+    "p" #'cider-pprint-eval-last-sexp
+    "n" #'cider-eval-ns-form
+    "w" #'cider-eval-last-sexp-and-replace
+    "c" #'cider-eval-last-sexp-to-clipboard))))
+
+;;;;;;;;;;;;
+;; Golang ;;
+;;;;;;;;;;;;
+
+;; (map! :map go-mode-map
+;;       :i "TAB" #'company-go)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Magit | Gist | Forge ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq auth-sources '("~/.authinfo"))
+
+(map!
+ (:leader
+  "g k" #'with-editor-cancel
+  "g f" #'with-editor-finish))
+
+;;;;;;;;;;;;;;;;;;
+;; Smart Parens ;;
+;;;;;;;;;;;;;;;;;;
+
+(map!
  :leader
  (:desc "wrap-square" "[ [" #'sp-wrap-square
   :desc "wrap-curly" "[ {" #'sp-wrap-curly
@@ -129,12 +174,7 @@
   :desc "barf-foward" "[ h" #'sp-forward-barf-sexp
   :desc "slurp-backward" "] l" #'sp-backward-slurp-sexp
   :desc "barf-backward" "] h" #'sp-backward-barf-sexp
-  :desc "splice-sexp" "[ s" #'sp-splice-sexp
-  :desc "pprint-result" "m e p" #'cider-pprint-eval-last-sexp
-  :desc "eval-deful-at-point" "m e c" #'cider-eval-defun-at-point
-  :desc "eval-ns-form" "m e n" #'cider-eval-ns-form)
- :desc "add-doublequote" "\"" #'paredit-doublequote)
-
+  :desc "splice-sexp" "[ s" #'sp-splice-sexp))
 
 ;;;;;;;;;;;
 ;; Other ;;
@@ -146,8 +186,8 @@
 (use-package! treemacs
     :config (treemacs-git-mode 'extended))
 
-(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
-(map! "TAB" #'company-indent-or-complete-common)
+;; (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+;; (map! "TAB" #'company-indent-or-complete-common)
 
 (map! :leader
       :desc "Maximize window" "w m m" #'maximize-window
@@ -156,9 +196,5 @@
       :desc "ace-delete-wintow" "w D" #'ace-delete-window
       :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
 
-(map!
- :mode git-commit-mode
- :map git-commit-mode-map
- :leader
- :desc "With editor finish" "z k" #'with-editor-cancel
- :desc "With editor finish" "z f" #'with-editor-finish)
+
+(toggle-frame-fullscreen)
