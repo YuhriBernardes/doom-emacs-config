@@ -144,16 +144,10 @@
     "w" #'cider-eval-last-sexp-and-replace
     "c" #'cider-eval-last-sexp-to-clipboard))))
 
-;;;;;;;;;;;;
-;; Golang ;;
-;;;;;;;;;;;;
-
-;; (map! :map go-mode-map
-;;       :i "TAB" #'company-go)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit | Gist | Forge ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (setq auth-sources '("~/.authinfo"))
 
 (map!
@@ -164,7 +158,6 @@
 ;;;;;;;;;;;;;;;;;;
 ;; Smart Parens ;;
 ;;;;;;;;;;;;;;;;;;
-
 (map!
  :leader
  (:desc "wrap-square" "[ [" #'sp-wrap-square
