@@ -23,7 +23,8 @@
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 (setq doom-font (font-spec :family "Source Code Pro" :size 14 :weight 'normal))
-(setq doom-big-font (font-spec :family "Source Code Pro" :size 25 :weight 'normal))
+;; (setq doom-big-font (font-spec :family "Source Code Pro" :size 18 :weight 'normal))
+(setq doom-big-font (font-spec :family "Source Code Pro" :size 23 :weight 'normal))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -144,6 +145,9 @@
     "w" #'cider-eval-last-sexp-and-replace
     "c" #'cider-eval-last-sexp-to-clipboard))))
 
+(map!
+ :i "TAB" #'+company/complete)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit | Gist | Forge ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -177,7 +181,9 @@
 (setq smartparens-global-strict-mode t)
 
 (use-package! treemacs
-    :config (treemacs-git-mode 'extended))
+  :config
+  (treemacs-git-mode 'extended)
+  (setq treemacs-missing-project-action 'remove))
 
 ;; (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 ;; (map! "TAB" #'company-indent-or-complete-common)
@@ -188,6 +194,3 @@
       :desc "ace-window" "w a" #'ace-window
       :desc "ace-delete-wintow" "w D" #'ace-delete-window
       :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
-
-
-(toggle-frame-fullscreen)
