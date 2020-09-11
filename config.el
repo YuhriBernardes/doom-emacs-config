@@ -36,9 +36,11 @@
   (doom/reload-theme))
 
 (defun random-dark-theme ()
+  (interactive)
   (random-theme '(doom-moonlight doom-wilmersdorf doom-laserwave doom-challenger-deep doom-city-lights)))
 
 (defun random-light-theme ()
+  (interactive)
   (random-theme '(doom-one-light doom-acario-light doom-nord-light doom-solarized-light doom-tomorrow-day)))
 
 (random-dark-theme)
@@ -183,6 +185,7 @@
 (use-package! treemacs
   :config
   (treemacs-git-mode 'extended)
+  (setq treemacs-project-follow-cleanup t)
   (setq treemacs-missing-project-action 'remove))
 
 ;; (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
