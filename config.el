@@ -29,7 +29,6 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;;
 
 (defun random-theme (theme-list)
   (setq doom-theme (seq-random-elt theme-list))
@@ -71,6 +70,15 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;;;;;;;;;;;;;;
+;; PlantUML ;;
+;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
+
+(use-package! plantuml-mode
+  :config
+  (setq plantuml-default-exec-mode 'jar))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Docker compose mode ;;
