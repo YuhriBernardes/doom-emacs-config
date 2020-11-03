@@ -205,3 +205,25 @@
       :desc "ace-window" "w a" #'ace-window
       :desc "ace-delete-wintow" "w D" #'ace-delete-window
       :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
+
+;;;;;;;;;;;;;;;;
+;; Projectile ;;
+;;;;;;;;;;;;;;;;
+
+(after! projectile
+  (setq projectile-project-root-files
+        (append projectile-project-root-files-bottom-up
+                (add-to-list 'projectile-project-root-files "go.mod"))
+        projectile-project-root-files-bottom-up nil))
+
+;;;;;;;;
+;; Go ;;
+;;;;;;;;
+
+(defun go-format-custom-hook ()
+  ; Use goimports instead of go-fmt
+  (setq gofmt-command "goimports")
+  ; Call Gofmt before saving
+  (add-hook 'before-save-hook 'gofmt-before-save))
+
+(add-hook 'go-mode-hook 'go-format-custom-hook)

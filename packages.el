@@ -12,6 +12,10 @@
 (package! kubel)
 (package! kubel-evil)
 (package! docker-compose-mode)
+(package! protobuf-mode)
+
+(defun local-module-path (module-name)
+  (string (concat doom-private-dir "modules/" module-name "/")))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
