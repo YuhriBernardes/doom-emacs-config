@@ -9,6 +9,8 @@
 (setq user-full-name "Yuhri Bernardes"
       user-mail-address "yuhri.graziano@gmail.com")
 
+(doom/set-indent-width 2)
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
