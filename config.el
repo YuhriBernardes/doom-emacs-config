@@ -225,7 +225,12 @@
 (defun go-format-custom-hook ()
   ; Use goimports instead of go-fmt
   (setq gofmt-command "goimports")
+
   ; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save))
 
 (add-hook 'go-mode-hook 'go-format-custom-hook)
+
+;; Run this if you need to use build tags. After that, restart lsp workspace
+;; (setq lsp-go-env (make-hash-table))
+;; (puthash "GOFLAGS" "-tags=test" lsp-go-env)
