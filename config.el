@@ -158,7 +158,8 @@
     "c" #'cider-eval-last-sexp-to-clipboard))))
 
 (map!
- :i "TAB" #'+company/complete)
+ :i "TAB" #'+company/complete
+ :v  "U" #'undo-tree-visualize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit | Gist | Forge ;;
