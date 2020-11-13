@@ -38,7 +38,7 @@
 
 (defun random-dark-theme ()
   (interactive)
-  (random-theme '(doom-moonlight doom-wilmersdorf doom-laserwave doom-challenger-deep doom-city-lights)))
+  (random-theme '(doom-moonlight doom-laserwave doom-challenger-deep doom-city-lights)))
 
 (defun random-light-theme ()
   (interactive)
