@@ -186,28 +186,6 @@
   :desc "barf-backward" "] h" #'sp-backward-barf-sexp
   :desc "splice-sexp" "[ s" #'sp-splice-sexp))
 
-;;;;;;;;;;;
-;; Other ;;
-;;;;;;;;;;;
-
-;; Smartparens force strict mode
-(setq smartparens-global-strict-mode t)
-
-(use-package! treemacs
-  :config
-  (treemacs-git-mode 'extended)
-  (setq treemacs-project-follow-cleanup t)
-  (setq treemacs-missing-project-action 'remove))
-
-;; (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
-;; (map! "TAB" #'company-indent-or-complete-common)
-
-(map! :leader
-      :desc "Maximize window" "w m m" #'maximize-window
-      :desc "Minimize window" "w m n" #'minimize-window
-      :desc "ace-window" "w a" #'ace-window
-      :desc "ace-delete-wintow" "w D" #'ace-delete-window
-      :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
 
 ;;;;;;;;;;;;;;;;
 ;; Projectile ;;
@@ -235,3 +213,34 @@
 ;; Run this if you need to use build tags. After that, restart lsp workspace
 ;; (setq lsp-go-env (make-hash-table))
 ;; (puthash "GOFLAGS" "-tags=test" lsp-go-env)
+
+;;;;;;;;;;;
+;; Other ;;
+;;;;;;;;;;;
+
+;; Smartparens force strict mode
+(setq smartparens-global-strict-mode t)
+
+(use-package! treemacs
+  :config
+  (treemacs-git-mode 'extended)
+  (setq treemacs-project-follow-cleanup t)
+  (setq treemacs-missing-project-action 'remove))
+
+;; (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+;; (map! "TAB" #'company-indent-or-complete-common)
+
+(map! :leader
+      :desc "Maximize window" "w m m" #'maximize-window
+      :desc "Minimize window" "w m n" #'minimize-window
+      :desc "ace-window" "w a" #'ace-window
+      :desc "ace-delete-wintow" "w D" #'ace-delete-window
+      :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
+
+(toggle-frame-fullscreen)
+
+;;;;;;;;;;;;;;
+;; Snippets ;;
+;;;;;;;;;;;;;;
+
+(setq yas-indent-line 'auto)
