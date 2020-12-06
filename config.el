@@ -10,6 +10,9 @@
       user-mail-address "yuhri.graziano@gmail.com")
 
 (doom/set-indent-width 2)
+(setq js-indent-level 2)
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -24,13 +27,17 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font (font-spec :family "Source Code Pro" :size 14 :weight 'normal))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'normal))
 ;; (setq doom-big-font (font-spec :family "Source Code Pro" :size 18 :weight 'normal))
-(setq doom-big-font (font-spec :family "Source Code Pro" :size 23 :weight 'normal))
+(setq doom-big-font (font-spec :family "FiraCode Nerd Font" :size 23 :weight 'normal))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+
+(defun select-theme (theme-name)
+(setq doom-theme theme-name)
+  (doom/reload-theme))
 
 (defun random-theme (theme-list)
   (setq doom-theme (seq-random-elt theme-list))
@@ -158,8 +165,7 @@
     "c" #'cider-eval-last-sexp-to-clipboard))))
 
 (map!
- :i "TAB" #'+company/complete
- :v  "U" #'undo-tree-visualize)
+ :i "TAB" #'+company/complete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit | Gist | Forge ;;
@@ -192,10 +198,27 @@
 ;;;;;;;;;;;;;;;;
 
 (after! projectile
-  (setq projectile-project-root-files
-        (append projectile-project-root-files-bottom-up
-                (add-to-list 'projectile-project-root-files "go.mod"))
-        projectile-project-root-files-bottom-up nil))
+  ;; (setq projectile-project-root-files
+  ;;       (append projectile-project-root-files-bottom-up
+  ;;               (add-to-list 'projectile-project-root-files "go.mod"))
+        ;;projectile-project-root-files-bottom-up nil
+        ;; )
+        ;;
+  (add-to-list 'projectile-project-root-files-bottom-up "go.mod")
+  (add-to-list 'projectile-project-root-files-bottom-up "package.json")
+  ;; (setq projectile-project-root-files-functions '(projectile-root-top-down-recurring))
+
+  (projectile-register-project-type 'go-modules '("go.mod")
+                                    :project-file "go.mod"
+                                    :compile "go build"
+                                    :test "go test ./..."
+                                    :run "go run"
+                                    :test-suffix "_test")
+;; projectile-project-root-files
+;; projectile-project-root-files-bottom-up
+;; projectile-project-root-files-top-down-recurring
+;;
+  )
 
 ;;;;;;;;
 ;; Go ;;
@@ -212,7 +235,14 @@
 
 ;; Run this if you need to use build tags. After that, restart lsp workspace
 ;; (setq lsp-go-env (make-hash-table))
-;; (puthash "GOFLAGS" "-tags=test" lsp-go-env)
+;; (puthash "GOFLAGS" "-tags=integration,test" lsp-go-env)
+
+;;;;;;;;;;;;;;;;;;;
+;; JS - Prettier ;;
+;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)
 
 ;;;;;;;;;;;
 ;; Other ;;
@@ -238,6 +268,8 @@
       :desc "line-toggle-comment" "c l" #'evilnc-comment-or-uncomment-lines)
 
 (toggle-frame-fullscreen)
+
+(map! :n  "U" #'undo-tree-visualize)
 
 ;;;;;;;;;;;;;;
 ;; Snippets ;;

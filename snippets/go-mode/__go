@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: __.go
+# key: __go
+# --
+
+
+package ${1:`(car (last (split-string (file-name-directory buffer-file-name) "/") 2))`}
+
+import (
+   "fmt"
+)
+
+$0

@@ -8,11 +8,11 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
-(package! plantuml-mode)
 (package! kubel)
 (package! kubel-evil)
 (package! docker-compose-mode)
 (package! protobuf-mode)
+(package! prettier-js)
 
 (defun local-module-path (module-name)
   (string (concat doom-private-dir "modules/" module-name "/")))
