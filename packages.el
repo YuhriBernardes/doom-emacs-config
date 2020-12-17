@@ -12,7 +12,6 @@
 (package! kubel-evil)
 (package! docker-compose-mode)
 (package! protobuf-mode)
-(package! prettier-js)
 (package! k8s-mode)
 
 (defun local-module-path (module-name)

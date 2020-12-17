@@ -39,7 +39,7 @@
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the an region operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       pretty-code       ; ligatures or substitute text with pretty symbols
+       ;;(ligatures +fira)       ; ligatures or substitute text with pretty symbols
        ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
@@ -53,7 +53,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;; (format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
@@ -83,7 +83,7 @@
 
        :tools
        ;;ansible
-       (debugger)          ; FIXME stepping through code, to help you add bugs
+       debugger          ; FIXME stepping through code, to help you add bugs
        direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -160,7 +160,7 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web               ; the tubes
+       (web +web-wordpress-mode +web-react-mode)               ; the tubes
        yaml              ; JSON, but readable
 
        :email
