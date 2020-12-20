@@ -308,3 +308,7 @@
 (add-hook! 'js2-jsx-mode-hook 'rainbow-mode)
 (add-hook! 'typescript-mode-hook 'rainbow-mode)
 (add-hook! 'typescript-tsx-mode-hook 'rainbow-mode)
+
+;; Latex
+(after! org
+  (add-to-list 'org-latex-default-packages-alist '("" "color" t)))

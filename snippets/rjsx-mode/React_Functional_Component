@@ -4,7 +4,7 @@
 # --
 import React from 'react';
 
-const ${1:`(f-base buffer-file-name)`} = (props) => (
+const ${1:`(car (last (split-string (file-name-directory buffer-file-name) "/") 2))`} = (props) => (
   $0
 );
 
