@@ -309,6 +309,25 @@
 (add-hook! 'typescript-mode-hook 'rainbow-mode)
 (add-hook! 'typescript-tsx-mode-hook 'rainbow-mode)
 
-;; Latex
+;;;;;;;;;;;
+;; Latex ;;
+;;;;;;;;;;;
+
 (after! org
   (add-to-list 'org-latex-default-packages-alist '("" "color" t)))
+
+;;;;;;;;;;;;;;;;
+;; projectile ;;
+;;;;;;;;;;;;;;;;
+
+(defun add-projects (&rest project-roots)
+  (projectile-clear-known-projects)
+  (dolist (p project-roots)
+    (let ((p-name (file-name-nondirectory p)))
+    (if (not (+workspace-exists-p p-name))
+        (+workspace-new p-name))
+    (projectile-add-known-project p)
+    (projectile-switch-project-by-name p)))
+
+  (if (+workspace-exists-p (file-name-nondirectory "main"))
+      (+workspace-delete "main" t)))
