@@ -1,0 +1,10 @@
+# -*- mode: typescript-tsx-mode -*-
+# name: Styled components base file
+# key: scf
+# --
+
+import styled from 'styled-components'
+
+export const Container = styled.div\`
+$0
+\`

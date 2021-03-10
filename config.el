@@ -29,7 +29,7 @@
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'normal))
 ;; (setq doom-big-font (font-spec :family "Source Code Pro" :size 18 :weight 'normal))
-(setq doom-big-font (font-spec :family "FiraCode Nerd Font" :size 23 :weight 'normal))
+(setq doom-big-font (font-spec :family "FiraCode Nerd Font" :size 16 :weight 'normal))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -234,8 +234,11 @@
 ;; (add-hook 'go-mode-hook 'go-format-custom-hook)
 
 ;; Run this if you need to use build tags. After that, restart lsp workspace
-;; (setq lsp-go-env (make-hash-table))
-;; (puthash "GOFLAGS" "-tags=integration,test" lsp-go-env)
+(defun set-build-flags ()
+  (interactive)
+  (setq lsp-go-env (make-hash-table))
+  (puthash "GOFLAGS" "-tags=integration,test" lsp-go-env))
+
 
 ;;;;;;;;;;;;;;;;;;;
 ;; JS - Prettier ;;
@@ -331,3 +334,18 @@
 
   (if (+workspace-exists-p (file-name-nondirectory "main"))
       (+workspace-delete "main" t)))
+
+;;;;;;;;;;;;;;
+;; debugger ;;
+;;;;;;;;;;;;;;
+
+;; (dap-register-debug-template
+;;   "Launch Payment service"
+;;   (list :type "go"
+;;         :request "launch"
+;;         :name "Launch Bexs App"
+;;         :mode "debug"
+;;         :program "/home/yuhri/code/bexs/payment/cmd/payment-service/main.go"
+;;         :args "-config-dir /home/yuhri/code/bexs/payment/configs -secret-dir /home/yuhri/code/bexs/payment/configs/secrets"
+;;         :env nil
+;;         :envFile nil))

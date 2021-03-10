@@ -1,0 +1,8 @@
+# -*- mode: typescript-mode -*-
+# name: Styled component component
+# key: scc
+# --
+
+export const ${1:Container} = styled.${2:div}\`
+$0
+\`

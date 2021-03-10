@@ -1,0 +1,14 @@
+# -*- mode: typescript-tsx-mode -*-
+# name: Create Functional Component
+# key: rfc
+# --
+
+import { FC } from 'react'
+// import { Container } from './styles'
+// import { Props } from './types'
+
+const ${1:`(car (last (split-string (file-name-directory buffer-file-name) "/") 2))`}: FC = () => {
+  return <div>hello!!</div>
+}
+
+export default $1
